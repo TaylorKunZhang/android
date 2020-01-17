@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvName"
+    android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:background="@drawable/rect_gray_f2_radius_20"
+    android:gravity="center"
+    android:paddingStart="12dp"
+    android:paddingTop="6dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="6dp"
+    android:textColor="@color/black_1F"
+    android:textSize="14dp"
+    tools:text="Factor" />

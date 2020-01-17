@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">choose-specification</string>
+
+    <string name="choose_specification_selected">选好了</string>
+</resources>

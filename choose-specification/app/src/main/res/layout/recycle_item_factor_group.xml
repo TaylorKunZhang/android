@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_1F"
+        android:textSize="14dp"
+        tools:text="Factor Group" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleList"
+        style="@style/RecyclerViewStyle" />
+
+</LinearLayout>
