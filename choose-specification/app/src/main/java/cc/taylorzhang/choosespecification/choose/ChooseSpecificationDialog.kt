@@ -170,25 +170,7 @@ class ChooseSpecificationDialog : BaseDialog() {
             FactorEntity.Status.AVAILABLE -> specificationCalculator?.selectedFactor(factor)
             FactorEntity.Status.SELECTED -> specificationCalculator?.unselectedFactor(factor)
         }
-
-        (recycleFactorGroup.layoutManager as LinearLayoutManager).let {
-            val firstVisibleItemPosition = it.findFirstVisibleItemPosition()
-            val lastVisibleItemPosition = it.findLastVisibleItemPosition()
-
-            for (position in firstVisibleItemPosition..lastVisibleItemPosition) {
-                val recycleView =
-                    factorGroupAdapter.getViewByPosition(position, R.id.recycleList) as RecyclerView
-                (recycleView.adapter as SpecificationFactorAdapter).let { adapter ->
-                    adapter.data.indices.forEach { index ->
-                        adapter.notifyItemChanged(
-                            index,
-                            SpecificationFactorAdapter.UPDATE_TYPE_STATUS
-                        )
-                    }
-                }
-            }
-        }
-
+        factorGroupAdapter.notifyDataSetChanged()
         checkSelectedSpecification()
     }
 
