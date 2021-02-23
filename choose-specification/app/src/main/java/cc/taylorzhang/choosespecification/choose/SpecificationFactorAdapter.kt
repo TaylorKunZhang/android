@@ -1,11 +1,8 @@
 package cc.taylorzhang.choosespecification.choose
 
-import android.graphics.Rect
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.ContextCompat
 import cc.taylorzhang.choosespecification.R
 import cc.taylorzhang.choosespecification.entity.FactorEntity
-import cc.taylorzhang.choosespecification.util.ConvertUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
@@ -30,12 +27,6 @@ class SpecificationFactorAdapter : BaseQuickAdapter<FactorEntity, BaseViewHolder
         updateStatus(helper, item)
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-
-        initItemDecoration(recyclerView)
-    }
-
     override fun onBindViewHolder(
         holder: BaseViewHolder,
         position: Int,
@@ -58,58 +49,19 @@ class SpecificationFactorAdapter : BaseQuickAdapter<FactorEntity, BaseViewHolder
         }
     }
 
-    private fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
-                    outRect.right = ConvertUtil.dip2px(mContext, 0)
-                } else {
-                    outRect.right = ConvertUtil.dip2px(mContext, 12)
-                }
-                outRect.top = ConvertUtil.dip2px(mContext, 10)
-            }
-        })
-    }
-
     private fun updateStatus(helper: BaseViewHolder, item: FactorEntity) {
         when (item.status) {
             FactorEntity.Status.DISABLED -> {
-                helper.setTextColor(
-                    R.id.tvName, mContext.resources.getColor(
-                        R.color.gray_C8
-                    )
-                )
-                helper.setBackgroundRes(
-                    R.id.tvName,
-                    R.drawable.rect_gray_f2_radius_20
-                )
+                helper.setTextColor(R.id.tvName, ContextCompat.getColor(mContext, R.color.gray_C8))
+                helper.setBackgroundRes(R.id.tvName, R.drawable.rect_gray_f2_radius_20)
             }
             FactorEntity.Status.AVAILABLE -> {
-                helper.setTextColor(
-                    R.id.tvName, mContext.resources.getColor(
-                        R.color.black_1F
-                    )
-                )
-                helper.setBackgroundRes(
-                    R.id.tvName,
-                    R.drawable.rect_gray_f2_radius_20
-                )
+                helper.setTextColor(R.id.tvName, ContextCompat.getColor(mContext, R.color.black_1F))
+                helper.setBackgroundRes(R.id.tvName, R.drawable.rect_gray_f2_radius_20)
             }
             FactorEntity.Status.SELECTED -> {
-                helper.setTextColor(
-                    R.id.tvName, mContext.resources.getColor(
-                        R.color.green_12
-                    )
-                )
-                helper.setBackgroundRes(
-                    R.id.tvName,
-                    R.drawable.factor_selected_bg
-                )
+                helper.setTextColor(R.id.tvName, ContextCompat.getColor(mContext, R.color.green_12))
+                helper.setBackgroundRes(R.id.tvName, R.drawable.factor_selected_bg)
             }
         }
     }

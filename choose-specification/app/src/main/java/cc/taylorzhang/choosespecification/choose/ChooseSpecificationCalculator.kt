@@ -15,9 +15,10 @@ import cc.taylorzhang.choosespecification.entity.SpecificationEntity
  */
 class ChooseSpecificationCalculator(private val product: ProductEntity) {
     // 选中因子列表
-    private val selectedFactorList = ArrayList<FactorEntity>()
+    private val mSelectedFactorList = ArrayList<FactorEntity>()
+
     // 选中因子id列表
-    private val selectedFactorIdList = ArrayList<Int>()
+    private val mSelectedFactorIdList = ArrayList<Int>()
 
     init {
         initList()
@@ -48,14 +49,14 @@ class ChooseSpecificationCalculator(private val product: ProductEntity) {
     }
 
     fun getSelectedSpecification(): SpecificationEntity? {
-        if (selectedFactorList.isEmpty()) {
+        if (mSelectedFactorList.isEmpty()) {
             return null
         }
 
         // 对包含选中因子列表中第一个的因子的规格进行遍历，查看当前选中的因子列表是否能构成一个规格
-        return selectedFactorList.first().specificationList.find { specification ->
-            specification.factorIdList.size == selectedFactorList.size &&
-                    specification.factorIdList.containsAll(selectedFactorIdList)
+        return mSelectedFactorList.first().specificationList.find { specification ->
+            specification.factorIdList.size == mSelectedFactorList.size &&
+                    specification.factorIdList.containsAll(mSelectedFactorIdList)
         }
     }
 
@@ -113,14 +114,14 @@ class ChooseSpecificationCalculator(private val product: ProductEntity) {
 
     private fun addSelectedFactor(factor: FactorEntity) {
         factor.status = FactorEntity.Status.SELECTED
-        selectedFactorList.add(factor)
-        selectedFactorIdList.add(factor.id)
+        mSelectedFactorList.add(factor)
+        mSelectedFactorIdList.add(factor.id)
     }
 
     private fun removeSelectedFactor(factor: FactorEntity) {
         factor.status = FactorEntity.Status.AVAILABLE
-        selectedFactorList.remove(factor)
-        selectedFactorIdList.remove(factor.id)
+        mSelectedFactorList.remove(factor)
+        mSelectedFactorIdList.remove(factor.id)
     }
 
     private fun updateAllFactorStatus(currentFactor: FactorEntity) {
@@ -131,7 +132,7 @@ class ChooseSpecificationCalculator(private val product: ProductEntity) {
             if (!factorGroup.list.contains(currentFactor)) {
                 // 只处理不包含当前操作因子的因子组
                 factorIdList.clear()
-                factorIdList.addAll(selectedFactorIdList)
+                factorIdList.addAll(mSelectedFactorIdList)
                 factorGroup.list.find { it.status == FactorEntity.Status.SELECTED }?.let {
                     // 剔除当前因子组选中的因子id
                     factorIdList.remove(it.id)

@@ -1,14 +1,14 @@
 package cc.taylorzhang.choosespecification.choose
 
-import android.graphics.Rect
-import android.view.View
+import android.graphics.drawable.ShapeDrawable
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cc.taylorzhang.choosespecification.R
 import cc.taylorzhang.choosespecification.entity.FactorEntity
 import cc.taylorzhang.choosespecification.entity.FactorGroupEntity
-import cc.taylorzhang.choosespecification.util.ConvertUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.google.android.flexbox.FlexboxItemDecoration
 import com.google.android.flexbox.FlexboxLayoutManager
 
 /**
@@ -22,44 +22,33 @@ import com.google.android.flexbox.FlexboxLayoutManager
 class SpecificationFactorGroupAdapter : BaseQuickAdapter<FactorGroupEntity, BaseViewHolder>(
     R.layout.recycle_item_factor_group
 ) {
-    private var onFactorClickListener: ((factor: FactorEntity) -> Unit)? = null
+    private var mOnFactorClickListener: ((factor: FactorEntity) -> Unit)? = null
 
     override fun convert(helper: BaseViewHolder, item: FactorGroupEntity) {
         helper.setText(R.id.tvName, item.name)
-        val recycleList = helper.getView<RecyclerView>(R.id.recycleList)
-        if (recycleList.adapter == null) {
-            recycleList.layoutManager = FlexboxLayoutManager(mContext)
-            recycleList.adapter = SpecificationFactorAdapter().apply {
-                setNewData(item.list)
-                setOnItemClickListener { _, _, position ->
-                    onFactorClickListener?.invoke(this.data[position])
+        helper.getView<RecyclerView>(R.id.recycleList).let {
+            if (it.adapter == null) {
+                it.layoutManager = FlexboxLayoutManager(mContext)
+                it.adapter = SpecificationFactorAdapter().also { adapter ->
+                    adapter.setOnItemClickListener { _, _, position ->
+                        mOnFactorClickListener?.invoke(adapter.data[position])
+                    }
                 }
+
+                val itemDecoration = FlexboxItemDecoration(it.context)
+                itemDecoration.setDrawable(ShapeDrawable().apply {
+                    paint.color = ContextCompat.getColor(mContext, android.R.color.transparent)
+                    intrinsicWidth = mContext.resources.getDimensionPixelSize(R.dimen.dp_12)
+                    intrinsicHeight = mContext.resources.getDimensionPixelSize(R.dimen.dp_10)
+                })
+                it.addItemDecoration(itemDecoration)
             }
-        } else {
-            (recycleList.adapter as SpecificationFactorAdapter).setNewData(item.list)
+
+            (it.adapter as SpecificationFactorAdapter).setNewData(item.list)
         }
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-
-        initItemDecoration(recyclerView)
-    }
-
     fun setOnFactorClickListener(listener: (factor: FactorEntity) -> Unit) {
-        onFactorClickListener = listener
-    }
-
-    private fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                outRect.bottom = ConvertUtil.dip2px(mContext, 20)
-            }
-        })
+        mOnFactorClickListener = listener
     }
 }

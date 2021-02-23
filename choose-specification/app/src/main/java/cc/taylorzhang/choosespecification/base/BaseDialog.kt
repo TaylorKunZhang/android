@@ -2,6 +2,7 @@ package cc.taylorzhang.choosespecification.base
 
 import android.content.DialogInterface
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
@@ -69,7 +70,17 @@ abstract class BaseDialog : DialogFragment(), IInitView {
         dialog?.window?.attributes?.let {
             it.dimAmount = getDimAmount()
             it.width = getWidth()
-            it.height = getHeight()
+
+            // 解决弹窗高度是MATCH_PARENT时状态栏会变黑的问题
+            val height = getHeight()
+            it.height = if (height == WindowManager.LayoutParams.MATCH_PARENT) {
+                val rect = Rect()
+                requireActivity().window.decorView.getWindowVisibleDisplayFrame(rect)
+                rect.height()
+            } else {
+                height
+            }
+
             it.gravity = getGravity()
             dialog?.window?.attributes = it
         }

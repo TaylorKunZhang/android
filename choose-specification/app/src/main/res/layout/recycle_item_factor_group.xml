@@ -8,14 +8,15 @@
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="@dimen/dp_20"
         android:gravity="center_vertical"
         android:textColor="@color/black_1F"
-        android:textSize="14dp"
+        android:textSize="@dimen/dp_14"
         tools:text="Factor Group" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleList"
-        style="@style/RecyclerViewStyle" />
+        style="@style/RecyclerViewStyle"
+        android:layout_marginTop="@dimen/dp_10" />
 
 </LinearLayout>

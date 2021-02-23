@@ -4,38 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flRoot"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/llRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/dp_120"
         android:background="@drawable/rect_white_radius_10_0"
         android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp">
+            android:layout_height="@dimen/dp_52">
 
             <TextView
                 android:id="@+id/tvServiceName"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
+                android:layout_height="@dimen/dp_22"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:gravity="center_vertical"
                 android:textColor="@color/black_1F"
-                android:textSize="16dp"
+                android:textSize="@dimen/dp_16"
                 tools:text="Name" />
 
             <ImageButton
                 android:id="@+id/ibClose"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
                 android:layout_gravity="end"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:background="@null"
                 android:contentDescription="@null"
                 android:src="@drawable/close_black_25" />
@@ -45,9 +46,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleFactorGroup"
             style="@style/RecyclerViewStyle"
-            android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
             android:layout_weight="1" />
 
         <View style="@style/DivHorizontalStyle" />
@@ -55,17 +56,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clPrice"
             android:layout_width="match_parent"
-            android:layout_height="63dp">
+            android:layout_height="@dimen/dp_63">
 
             <TextView
                 android:id="@+id/tvActualPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="11dp"
+                android:layout_height="@dimen/dp_28"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_11"
                 android:gravity="center_vertical"
                 android:textColor="@color/green_12"
-                android:textSize="22dp"
+                android:textSize="@dimen/dp_22"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="¥ 298" />
@@ -73,50 +74,50 @@
             <TextView
                 android:id="@+id/tvOriginalPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="21dp"
+                android:layout_height="@dimen/dp_15"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginTop="@dimen/dp_21"
                 android:gravity="center_vertical"
                 android:textColor="@color/gray_90"
-                android:textSize="12dp"
+                android:textSize="@dimen/dp_12"
                 app:layout_constraintStart_toEndOf="@id/tvActualPrice"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="¥ 25" />
 
             <ImageButton
                 android:id="@+id/ibPlusService"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="@dimen/dp_44"
+                android:layout_height="@dimen/dp_44"
+                android:layout_marginTop="@dimen/dp_3"
+                android:layout_marginEnd="@dimen/dp_10"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:padding="10dp"
+                android:padding="@dimen/dp_10"
                 android:src="@drawable/billing_service_plus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvCount"
-                android:layout_width="25dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_24"
                 android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginEnd="44dp"
+                android:layout_marginEnd="@dimen/dp_44"
                 android:gravity="center"
                 android:textColor="@color/black_1F"
-                android:textSize="12dp"
+                android:textSize="@dimen/dp_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/ibPlusService"
                 tools:text="1" />
 
             <ImageButton
                 android:id="@+id/ibMinusService"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="59dp"
+                android:layout_width="@dimen/dp_44"
+                android:layout_height="@dimen/dp_44"
+                android:layout_marginEnd="@dimen/dp_59"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:padding="10dp"
+                android:padding="@dimen/dp_10"
                 android:src="@drawable/billing_service_minus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/ibPlusService" />
@@ -127,25 +128,25 @@
             android:id="@+id/btnSelected"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_30"
             android:background="@drawable/rect_green_12_radius_25"
             android:text="@string/choose_specification_selected"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="@dimen/dp_16" />
 
         <View
             android:id="@+id/btnSelectedShadow"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_30"
             android:background="@drawable/button_shadow_green" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="3dp" />
+            android:layout_height="@dimen/dp_3" />
 
     </LinearLayout>
 
